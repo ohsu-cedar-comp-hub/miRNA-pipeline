@@ -1,0 +1,6 @@
+ampUMI_tool:
+  /home/exacloud/lustre1/CEDAR/tools/AmpUMI/AmpUMI.py
+bowtie_bin:
+  /home/groups/CEDAR/tools/mirge_bin/bowtie-1.1.1
+mirge_refs:
+  /home/exacloud/lustre1/CEDAR/Genomes/mirge2.0_refs
