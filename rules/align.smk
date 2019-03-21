@@ -16,7 +16,7 @@ rule count:
     input:
         expand("samples/ampumi/{sample}_ampumi.fastq", sample = SAMPLES)
     output:
-        "results/miR.Counts.csv"
+        "results/mirge/miR.Counts.csv"
     params:
         bowtie = config["bowtie_bin"],
         refs = config["mirge_refs"],
@@ -24,7 +24,7 @@ rule count:
         "../envs/mirge.yaml"
     shell:
         """
-        miRge2.0 annotate -s {input} -o results/ \
+        miRge2.0 annotate -s {input} -o results/mirge \
                           -d miRBase -pb {params.bowtie} \
                           -lib {params.refs} -sp human -ai -gff -trf -cpu 4
         mv results/miRge.*/* results/
