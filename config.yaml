@@ -1,6 +1,56 @@
+####################################################################
+## Tool-specific files that will not change from project-to-project
+####################################################################
+
 ampUMI_tool:
   /home/exacloud/lustre1/CEDAR/tools/AmpUMI/AmpUMI.py
 bowtie_bin:
   /home/groups/CEDAR/tools/mirge_bin/bowtie-1.1.1
 mirge_refs:
   /home/exacloud/lustre1/CEDAR/Genomes/mirge2.0_refs
+
+##########################################
+## Important project-specific paths/files
+##########################################
+
+# Metadata needed for differential expression analysis
+omic_meta_data:
+  /path/to/metadata
+# Path to your base directory (path to this directory)
+base_dir:
+  /path/to/base/directory
+
+#############################################################################################
+## Project-specific specifications you will need to make prior to submission of the pipeline
+#############################################################################################
+
+# Unique project identifier which will be concatenated onto your counts table file name.
+project_id:
+  TestRun
+# The "baseline" used for your differential expression analysis. Ex: Healthy, WT, etc.
+# The column name of the characteristic you would like to do DE on. Example: Diagnosis, genotype, etc. This must be a column in your omic_meta_data.
+linear_model:
+  sample_pathology
+# The column name in which your sampleIDs are defined in omic_meta_data. These should match the sampleIDs in your fastq files.
+sample_id:
+  Seq_ID
+# The column names in your omic_meta_data file which you would like to annotate your heatmaps by. This is also used as a QC to look for batch effects. Enter columns which could potentially introduce a batch effect in your data (like Date of Library Prep), or you would like to annotate in your heatmaps (like Condition/Treatment).
+meta_columns_to_plot:
+  sample_pathology: sample_pathology
+# Contrasts which you would like to run differential expression on.
+# For example if you want to look at wild type (wt) vs. mutant (mut), you would specify mut-vs-wt
+# It is important that when listing your types here, you write your baseline SECOND
+diffexp:
+  # contrasts for the deseq2 results method
+  contrasts:
+    livcir-vs-healthy:
+      - livcir
+      - healthy
+# The column name in your omic_meta_data file to colour your PCA plot by
+pca:
+  labels:
+  # columns of sample sheet to use for PCA annotation
+    - sample_pathology
+
+
+
