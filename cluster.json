@@ -25,5 +25,36 @@
         "e" : "logs/count/count%j.err",
         "c" : 4,
         "mem" : 45000
+    },
+    "deseq2_init" :
+    {
+        "J" : "deseq2_init",
+        "e" : "logs/deseq2_init/deseq2_init_%j.err",
+        "o" : "logs/deseq2_init/deseq2_init_%j.out",
+        "c" : 20,
+        "mem" : 80000
+    },
+    "deseq2_plots" :
+    {
+        "J" : "deseq2_plots",
+        "e" : "logs/deseq2_plots/deseq2_plots_%j.err",
+        "o" : "logs/deseq2_plots/deseq2_plots_%j.out",
+        "mem" : 30000
+    },
+    "deseq2" :
+    {
+        "J" : "deseq2",
+        "e" : "logs/deseq2/deseq2_%j.err",
+        "o" : "logs/deseq2/deseq2_%j.out",
+        "c" : 20,
+        "mem":80000
+    },
+    "volcano" :
+    {
+        "J" : "volcano",
+        "e" : "logs/volcano/volcano%j.err",
+        "o" : "logs/volcano/volcano%j.out",
+        "c" : 1,
+        "mem" : 5400
     }
 }
