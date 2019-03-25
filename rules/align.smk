@@ -6,11 +6,11 @@ rule ampUMI:
     params:
         ampUMI = config["ampUMI_tool"]
     conda:
-        "../envs/mirge.yaml"
+        "../envs/ampumi.yaml"
     shell:
         """python {params.ampUMI} Process \
                    --fastq {input} --fastq_out {output} \
-                   --umi_regex "AACTGTAGGCACCATCAATIIIIIIIIIIII.*" --write_UMI_counts > logs/{wildcards.sample}_ampumi.log 2>&1"""
+                   --umi_regex "AACTGTAGGCACCATCAATIIIIIIIIIIII.*" --write_UMI_counts > logs/ampUMI/{wildcards.sample}_ampumi.log 2>&1"""
 
 rule count:
     input:
