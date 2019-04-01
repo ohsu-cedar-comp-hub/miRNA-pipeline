@@ -26,7 +26,7 @@ rule count:
         """
         miRge2.0 annotate -s {input} -o results/mirge \
                           -d miRBase -pb {params.bowtie} \
-                          -lib {params.refs} -sp human -ai -gff -trf -cpu 4
+                          -lib {params.refs} -sp human -gff -trf -cpu 4
         mv results/miRge.*/* results/
         rm -r results/miRge.*
         """
