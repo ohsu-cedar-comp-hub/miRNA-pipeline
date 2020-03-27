@@ -5,9 +5,9 @@
         "N" : 1,
         "partition" : "exacloud",
         "J" : "{rule}.{wildcards}",
-        "o" : "logs/{rule}/{wildcards}_{rule}%j.out",
-        "e" : "logs/{rule}/{wildcards}_{rule}%j.err",
-        "c" : 4,
+        "o" : "logs/__default__/{wildcards}_{rule}%j.out",
+        "e" : "logs/__default__/{wildcards}_{rule}%j.err",
+        "c" : 1,
         "mem" : 45000
     },
      "ampUMI" :
@@ -18,13 +18,21 @@
         "c" : 4,
         "mem" : 45000
     },
-     "count" :
+     "fastqc" :
     {
-        "J" : "count",
-        "o" : "logs/count/count%j.out",
-        "e" : "logs/count/count%j.err",
-        "c" : 4,
+        "J" : "fastqc",
+        "o" : "logs/fastqc/fastqc%j.out",
+        "e" : "logs/fastqc/fastqc%j.err",
+        "c" : 2,
         "mem" : 45000
+    },
+    "star_miRNA" :
+    {
+        "J" : "star_miRNA",
+        "e" : "logs/star_miRNA/star_miRNA%j.err",
+        "o" : "logs/star_miRNA/star_miRNA%j.out",
+        "c" : 12,
+        "mem" : 64000
     },
     "deseq2_init" :
     {
