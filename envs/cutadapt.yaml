@@ -1,0 +1,32 @@
+name: cutadapt
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1
+  - _openmp_mutex=4.5
+  - ca-certificates=2019.11.28
+  - certifi=2019.11.28
+  - cutadapt=2.8
+  - dnaio=0.4.1
+  - ld_impl_linux-64=2.33.1
+  - libffi=3.2.1
+  - libgcc-ng=9.2.0
+  - libgomp=9.2.0
+  - libstdcxx-ng=9.2.0
+  - ncurses=6.1
+  - openssl=1.1.1d
+  - pigz=2.3.4
+  - pip=20.0.2
+  - python=3.7.6
+  - readline=8.0
+  - setuptools=45.1.0
+  - sqlite=3.30.1
+  - tk=8.6.10
+  - wheel=0.34.2
+  - xopen=0.8.4
+  - xz=5.2.4
+  - zlib=1.2.11
+prefix: /home/groups/CEDAR/roskamsh/tools/miniconda3/envs/cutadapt
+

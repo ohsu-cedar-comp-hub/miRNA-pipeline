@@ -15,10 +15,10 @@ mirge_refs:
 
 # Metadata needed for differential expression analysis
 omic_meta_data:
-  /path/to/metadata
+  /home/groups/CEDAR/roskamsh/projects/miRNA-pipeline/data/PPmiRNA_metadata.txt
 # Path to your base directory (path to this directory)
 base_dir:
-  /path/to/base/directory
+  /home/groups/CEDAR/roskamsh/projects/miRNA-pipeline
 
 #############################################################################################
 ## Project-specific specifications you will need to make prior to submission of the pipeline
@@ -26,31 +26,49 @@ base_dir:
 
 # Unique project identifier which will be concatenated onto your counts table file name.
 project_id:
-  TestRun
+  PP_miRNA
 # The "baseline" used for your differential expression analysis. Ex: Healthy, WT, etc.
 # The column name of the characteristic you would like to do DE on. Example: Diagnosis, genotype, etc. This must be a column in your omic_meta_data.
 linear_model:
-  sample_pathology
+  Diagnosis_w_type
 # The column name in which your sampleIDs are defined in omic_meta_data. These should match the sampleIDs in your fastq files.
 sample_id:
-  Seq_ID
+  SampleID
 # The column names in your omic_meta_data file which you would like to annotate your heatmaps by. This is also used as a QC to look for batch effects. Enter columns which could potentially introduce a batch effect in your data (like Date of Library Prep), or you would like to annotate in your heatmaps (like Condition/Treatment).
 meta_columns_to_plot:
-  sample_pathology: sample_pathology
+  sample_type: sample_type
+  Gender: Gender
+  Diagnosis_w_type: Diagnosis_w_type
+  Date_of_Extraction: Date_of_Extraction
 # Contrasts which you would like to run differential expression on.
 # For example if you want to look at wild type (wt) vs. mutant (mut), you would specify mut-vs-wt
 # It is important that when listing your types here, you write your baseline SECOND
 diffexp:
   # contrasts for the deseq2 results method
   contrasts:
-    livcir-vs-healthy:
-      - livcir
-      - healthy
+    LG_P-vs-HD_P:
+      - LG_P
+      - HD_P
+    LCx_P-vs-HD_P:
+      - LCx_P
+      - HD_P
+    LCir_P-vs-HD_P:
+      - LCir_P
+      - HD_P
+    LCir_P_C-vs-HD_P:
+      - LCir_P_C
+      - HD_P
+    LCir_P_C-vs-LCir_P:
+      - LCir_P_C
+      - LCir_P
+    LG_S-vs-LG_P:
+      - LG_S
+      - LG_P
 # The column name in your omic_meta_data file to colour your PCA plot by
 pca:
   labels:
   # columns of sample sheet to use for PCA annotation
-    - sample_pathology
+    - Diagnosis_w_type
 
 
 

@@ -13,11 +13,12 @@ project_id = config["project_id"]
 
 SAMPLES, = glob_wildcards("samples/raw/{sample}.fastq")
 
+filt_type = ['out','filtered']
+
 with open('cluster.json') as json_file:
     json_dict = json.load(json_file)
 
 rule_dirs = list(json_dict.keys())
-rule_dirs.pop(rule_dirs.index('__default__'))
 
 for rule in rule_dirs:
     if not os.path.exists(os.path.join(os.getcwd(),'logs',rule)):
@@ -28,23 +29,26 @@ for rule in rule_dirs:
 def message(mes):
     sys.stderr.write("|--- " + mes + "\n")
 
-def get_deseq2_threads(wildcards=None):
-    few_coeffs = False if wildcards is None else len(get_contrast(wildcards)) < 10
-    return 1 if len(config["omic_meta_data"]) < 100 or few_coeffs else 6
-
-def get_contrast(wildcards):
-    """Return each contrast provided in the configuration file"""
-    return config["diffexp"]["contrasts"][wildcards.contrast]
-
 for sample in SAMPLES:
     message("Sample " + sample + " will be processed")
 
 rule all:
     input:
-        expand("samples/ampumi/{sample}_ampumi.fastq",sample = SAMPLES),
-        "results/mirge/miR.Counts.csv",
-        "results/diffexp/pca.pdf",
-        expand("results/diffexp/{contrast}.diffexp.01.VolcanoPlot.pdf", contrast = config["diffexp"]["contrasts"]),
+        expand("samples/readLength/{sample}_unprocessed_readLength.txt", sample = SAMPLES),
+        "results/multiqc/{project_id}_multiqc.html".format(project_id=config["project_id"]),
+#        expand("results/tables/hsa_miRNA_count_from_hg38_{filt_type}.txt", filt_type = filt_type),
+        expand("samples/readLength/{sample}_readLength.txt", sample = SAMPLES),
+#        expand("samples/star_miRNA/{sample}_bam/{sample}.filtered.sorted.bw", sample = SAMPLES),
+#        "results/tables/miR_counts_bowtie2.txt",
+#        "results/tables/miR_counts_bowtie1.txt",
+#        expand("samples/bowtie2/{sample}.bw", sample = SAMPLES),
+        "results/tables/preprocessing_read_summary.txt",
+#        "results/tables/alignment_read_summary.txt", 
+        "results/tables/qiagen_counts.txt"
 
-include: "rules/align.smk"
-include: "rules/deseq.smk"
+include: "rules/preprocess.smk"
+#include: "rules/align_star.smk"
+#include: "rules/align_bowtie.smk"
+include: "rules/summary.smk"
+#include: "rules/mirpro.smk"
+include: "rules/align_qiagen.smk"
